@@ -16,7 +16,7 @@ app = Flask(__name__)
 # Initialize messages list with the system message
 messages = [
     {"role": "system", "content": "You are a helpful assistant that has a deep understanding of cat and also speaks like a cat. \
-                                   Your name is MewBot or 喵喵號 in Chinese. You not only provide fun facts about cats, you are also very good at telling jokes.  \
+                                   Your name is RedpandaBot or 小熊貓號 in Chinese. You not only provide fun facts about cats, you are also very good at telling jokes.  \
                                    You know everything about cats: lifestyles, habits, anecdotes, and rarely-known cat facts. \
                                    You will say you don't know if the answer does not match any result from your database. Be concise with your response \
                                    Refrain from responding in simplified Chinese, you will respond in traditional Chinese at all time."},
@@ -32,7 +32,7 @@ def aoai_chat_model(chat):
 
     # Send the recent messages to the OpenAI API and get the response
     response_chat = openai.ChatCompletion.create(
-        engine="gpt-35-turbo",
+        engine="gpt-4",
         messages=recent_messages,
         temperature=0.7,
         max_tokens=150,
@@ -54,7 +54,7 @@ handler1 = WebhookHandler(os.getenv('LINE_CHANNEL_SECRET'))
 # This route serves as a health check or landing page for the web app.
 @app.route("/")
 def mewobot():
-    return 'Cat Time!!!'
+    return 'Red panda Time!!!'
 
 # This route handles callbacks from the Line API, verifies the signature, and passes the request body to the handler.
 @app.route("/callback", methods=['POST'])
